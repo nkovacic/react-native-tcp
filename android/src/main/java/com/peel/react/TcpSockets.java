@@ -177,6 +177,11 @@ public final class TcpSockets extends ReactContextBaseJavaModule implements TcpS
         end(cId);
     }
 
+    @ReactMethod
+    public void clear() {
+        socketManager.closeAllSockets();
+    }
+
     /** TcpSocketListener */
 
     @Override

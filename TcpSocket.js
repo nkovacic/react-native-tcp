@@ -251,6 +251,9 @@ TcpSocket.prototype.destroy = function() {
     Sockets.destroy(this._id);
   }
 };
+TcpSocket.prototype.clear = function() {
+    Sockets.clear();
+};
 
 TcpSocket.prototype._registerEvents = function(): void {
   if (this._subs && this._subs.length > 0) {
