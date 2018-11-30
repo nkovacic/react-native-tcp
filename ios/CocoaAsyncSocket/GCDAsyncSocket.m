@@ -6407,7 +6407,7 @@ enum GCDAsyncSocketConfig
 #pragma mark Security
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)doStartTLS:(NSDictionary *)tlsSettings withCancelCurrentRead:(BOOL)cancelCurrentRead
+- (void)startTLS:(NSDictionary *)tlsSettings
 {
 	LogTrace();
 	
@@ -6430,11 +6430,6 @@ enum GCDAsyncSocketConfig
 		
 		if ((flags & kSocketStarted) && !(flags & kQueuedTLS) && !(flags & kForbidReadsWrites))
 		{
-			// dirty hack to fix that the client has already added a read with no timeout which we need to finish
-			if (currentRead && cancelCurrentRead) {
-				LogInfo(@"Cancelling current read as requested");
-				[self completeCurrentRead];
-			}
 			[readQueue addObject:packet];
 			[writeQueue addObject:packet];
 			
@@ -6445,14 +6440,6 @@ enum GCDAsyncSocketConfig
 		}
 	}});
 	
-}
-
-- (void)startTLSCancelCurrentRead:(NSDictionary *)tlsSettings
-{
-    [self doStartTLS:tlsSettings withCancelCurrentRead:TRUE];
-}
-- (void)startTLS:(NSDictionary *)tlsSettings {
-    [self doStartTLS:tlsSettings withCancelCurrentRead:FALSE];
 }
 
 - (void)maybeStartTLS
