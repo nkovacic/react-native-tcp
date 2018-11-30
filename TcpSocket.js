@@ -367,6 +367,10 @@ TcpSocket.prototype._onSecureConnect = function(error: string): void {
   this.emit('secureConnect');
 };
 
+TcpSocket.prototype.getState = function(): number {
+  return this._state
+}
+
 TcpSocket.prototype.write = function(chunk, encoding, cb) {
   if (typeof chunk !== 'string' && !(Buffer.isBuffer(chunk))) {
     throw new TypeError(
