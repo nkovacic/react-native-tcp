@@ -9,6 +9,7 @@
 'use strict';
 
 var ipRegex = require('ip-regex');
+var { NativeModules } = require('react-native');
 var NativeSockets = NativeModules.TcpSockets;
 var Socket = require('./TcpSocket');
 var Server = require('./TcpServer');
