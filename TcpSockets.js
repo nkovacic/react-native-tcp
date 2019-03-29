@@ -9,7 +9,7 @@
 'use strict';
 
 var ipRegex = require('ip-regex');
-
+var NativeSockets = NativeModules.TcpSockets;
 var Socket = require('./TcpSocket');
 var Server = require('./TcpServer');
 
@@ -21,6 +21,10 @@ exports.createServer = function(connectionListener: (socket: Socket)  => void) :
 exports.connect = exports.createConnection = function() : Socket {
   var tcpSocket = new Socket();
   return Socket.prototype.connect.apply(tcpSocket, tcpSocket._normalizeConnectArgs(arguments));
+};
+
+exports.clearAll = function() {
+  NativeSockets.clear();
 };
 
 exports.isIP = function(input: string) : number {
