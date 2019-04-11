@@ -368,7 +368,7 @@ TcpSocket.prototype._onError = function(error: string): void {
     this._debug('error message', normalizedError);
   }
 
-  this.emit('error', normalizedError);
+  //this.emit('error', normalizedError);
   this.destroy();
 };
 
