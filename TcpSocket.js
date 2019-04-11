@@ -76,6 +76,8 @@ TcpSocket.prototype._debug = function() {
   if (__DEV__) {
     var args = [].slice.call(arguments);
      args.unshift('socket-' + this._id);
+     args.push(new Date().toLocaleString());
+     
      console.log.apply(console, args);
   }
 };
