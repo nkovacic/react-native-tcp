@@ -55,7 +55,7 @@ RCT_EXPORT_MODULE()
              @"connection",
              @"data",
              @"close",
-             @"error"
+             @"error",
              @"secureConnect"];
 }
 
